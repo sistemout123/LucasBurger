@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Orange,
             ])
             ->font('Inter')
+            ->darkMode(true)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -67,20 +68,21 @@ class AdminPanelProvider extends PanelProvider
                 'panels::styles.after',
                 fn() => new \Illuminate\Support\HtmlString('
                     <style>
+                        /* Hybrid Theme: Default Filament Colors - Custom Overrides Removed */
+                        
                         /* Flat scrollbar */
                         ::-webkit-scrollbar { width: 6px; height: 6px; }
                         ::-webkit-scrollbar-track { background: transparent; }
-                        ::-webkit-scrollbar-thumb { background: rgba(120,113,108,0.25); border-radius: 9999px; }
+                        ::-webkit-scrollbar-thumb { background: rgba(48, 16, 144, 0.25); border-radius: 9999px; }
                         ::-webkit-scrollbar-thumb:hover { background: rgba(120,113,108,0.45); }
-
-                        /* Sidebar clean */
-                        .fi-sidebar { border-right: none !important; box-shadow: 1px 0 3px rgba(0,0,0,0.04); }
-                        .fi-sidebar-nav { scrollbar-width: thin; scrollbar-color: rgba(120,113,108,0.2) transparent; }
-
-                        /* Flat nav items */
-                        .fi-sidebar-item { border-radius: 0.5rem; }
-                        .fi-sidebar-group-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #a8a29e; padding-left: 0.75rem; }
                     </style>
+                    <script>
+                        console.log("Moonlight Hybrid Theme Loaded");
+                        // Force check dark mode
+                        if (localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                            document.documentElement.classList.add("dark");
+                        }
+                    </script>
                 '),
             );
     }

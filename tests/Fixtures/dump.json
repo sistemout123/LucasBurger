@@ -1,0 +1,21 @@
+{
+    "cnpj": "12.345.678\/0001-90",
+    "items": [
+        {
+            "original_name": "FARINHA DE TRIGO DONA BENTA 1KG",
+            "quantity": 0,
+            "uom_symbol": "UN",
+            "unit_price": 0,
+            "total_price": 12.47,
+            "matched_ingredient_id": null
+        },
+        {
+            "original_name": "REFRIGERANTE COCA COLA 2L",
+            "quantity": 0,
+            "uom_symbol": "CX",
+            "unit_price": 0,
+            "total_price": 14,
+            "matched_ingredient_id": null
+        }
+    ]
+}

@@ -16,7 +16,7 @@ class LoteIngrediente extends Model
         'numero_lote',
         'data_fabricacao',
         'data_validade',
-        'fornecedor',
+        'supplier_id',
     ];
 
     protected $casts = [
@@ -27,5 +27,10 @@ class LoteIngrediente extends Model
     public function ingredient()
     {
         return $this->belongsTo(Ingredient::class);
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 }

@@ -21,14 +21,16 @@ class InventoryService
         int $userId,
         ?string $docReferencia = null,
         ?int $loteId = null,
-        ?string $notas = null
+        ?string $notas = null,
+        ?int $supplierId = null
     ): TransacaoEstoque {
-        return DB::transaction(function () use ($ingredientId, $localId, $quantidade, $userId, $docReferencia, $loteId, $notas) {
+        return DB::transaction(function () use ($ingredientId, $localId, $quantidade, $userId, $docReferencia, $loteId, $notas, $supplierId) {
             $transacao = TransacaoEstoque::create([
                 'tipo_id' => 'ENTRADA_COMPRA',
                 'doc_referencia' => $docReferencia,
                 'solicitado_por' => $userId,
                 'notas' => $notas,
+                'supplier_id' => $supplierId,
             ]);
 
             $this->criarLinhaRazao($transacao->id, $ingredientId, $localId, $quantidade, $loteId);

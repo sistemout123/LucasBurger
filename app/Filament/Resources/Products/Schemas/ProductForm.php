@@ -44,6 +44,10 @@ class ProductForm
                                     ->options(Ingredient::all()->pluck('name', 'id'))
                                     ->required()
                                     ->searchable()
+                                    ->createOptionForm(\App\Filament\Resources\Ingredients\Schemas\IngredientForm::getComponents(false))
+                                    ->createOptionUsing(function (array $data) {
+                                        return Ingredient::create($data)->id;
+                                    })
                                     ->live()
                                     ->afterStateUpdated(function ($state, Set $set, Get $get) {
                                         $ingredient = Ingredient::find($state);

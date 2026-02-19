@@ -10,6 +10,7 @@ class TransacaoEstoque extends Model
     use HasFactory;
 
     protected $table = 'transacoes_estoque';
+    protected $guarded = [];
 
     protected $fillable = [
         'tipo_id',
@@ -19,6 +20,7 @@ class TransacaoEstoque extends Model
         'solicitado_por',
         'autorizado_por',
         'notas',
+        'supplier_id', // Added by instruction
     ];
 
     public function tipo()
@@ -39,6 +41,11 @@ class TransacaoEstoque extends Model
     public function autorizador()
     {
         return $this->belongsTo(\App\Models\User::class, 'autorizado_por');
+    }
+
+    public function supplier() // Added by instruction
+    {
+        return $this->belongsTo(Supplier::class);
     }
 
     public function linhasRazao()
